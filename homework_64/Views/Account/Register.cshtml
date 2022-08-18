@@ -1,0 +1,66 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "_Layout";
+}
+
+ <div class="registration-container">
+        <div class="registration">
+            <h2 class="registration-title">Зарегистрируйтесь, чтобы общаться с другими пользователями.</h2>
+            <form asp-action="Register" asp-controller="Account" class="registration-form" asp-antiforgery="true"
+                method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="mb-3">
+                    <input asp-for="Email" class="registration-input form-control" type="text"
+                        placeholder="Email адрес">
+                    <span class="validation text-danger" asp-validation-for="Email"></span>
+                </div>
+                <div class="mb-3">
+                    <input asp-for="UserName" class="registration-input form-control" type="text" placeholder="Логин">
+                    <span class="validation text-danger" asp-validation-for="UserName"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Выберите вашу дату рождения</label>
+                    <input type="date" asp-for="DateOfBirth" class="form-control" placeholder="Введите дату рождения">
+                    <span class="validation text-danger" asp-validation-for="DateOfBirth"></span>
+                </div>
+                <div class="mb-3 password-box">
+                    <input asp-for="Password" id="password" class="password-input form-control" type="password"
+                        placeholder="Пароль">
+                    <div id="password-view" class="password-img">
+                        <img src="~/images/view.png" class="view" alt="view">
+                    </div>
+                        <span class="validation text-danger" asp-validation-for="Password"></span>
+                </div>
+                <div class="mb-3 password-box">
+                    <input asp-for="PasswordConfirm" id="confirm" class="password-input form-control" type="password"
+                        placeholder="Подтверждение пароля">
+                    <div id="confirm-view" class="password-img">
+                        <img src="~/images/view.png" class="view" alt="view">
+                    </div>
+                    <span class="validation text-danger" asp-validation-for="PasswordConfirm"></span>
+                </div>
+                <div class="mb-3">
+                    <input asp-for="File" type="file" name="file" id="input-file" class="input input-file form-label"
+                        multiple hidden>
+                    <label class="btn btn-info" for="input-file">Загрузите аватар</label>
+                    <span asp-validation-for="File" class="text-danger"></span>
+                </div>
+                <button class="login-btn btn btn-success" type="submit">Регистрация</button>
+            </form>
+            <div class="registration-footer">
+                <p class="have-account">Есть аккаунт?</p>
+                <a asp-action="LogIn" class="sign-in">Вход</a>
+            </div>
+        </div>
+    </div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

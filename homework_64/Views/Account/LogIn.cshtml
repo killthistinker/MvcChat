@@ -1,0 +1,34 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Вход";
+    Layout = "_Layout";
+}
+<div class="registration-container">
+    <div class="login">
+        <h2 class="registration-title">Вход в систему</h2>
+        <form asp-action="LogIn" asp-controller="Account" class="authorization-form" asp-antiforgery="true" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="mb-3">
+                <input asp-for="Email" class="login-input" type="text" placeholder="Email адрес или логин">
+                <span class="validation text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="mb-3 password-box">
+                <input asp-for="Password" id="login-password" class="login-input" type="password" placeholder="Пароль">
+                <div id="password-view-login" class="password-img">
+                    <img src="~/images/view.png" class="view" alt="view">
+                </div>
+                <span class="validation text-danger"asp-validation-for="Password"></span>
+            </div>
+            <button class="login-btn btn btn-success" type="submit">Войти</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

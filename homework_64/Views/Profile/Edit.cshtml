@@ -1,0 +1,32 @@
+@model ProfileEditViewModel
+
+@{
+    ViewBag.Title = "Редактирование профиля";
+    Layout = "_Layout";
+}
+
+<div class="registration-container">
+    <div class="login">
+        <h2 class="registration-title">Редактирование пользователя</h2>
+        <form asp-action="Edit" asp-controller="Profile" class="authorization-form" asp-antiforgery="true" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+             <div class="mb-3">
+                 <input asp-for="UserName" class="login-input" type="text" placeholder="Логин">
+                 <span class="validation text-danger" asp-validation-for="UserName"></span>
+                 </div>
+            <div class="mb-3">
+                <input asp-for="Email" class="login-input" type="text" placeholder="Email">
+                <span class="validation text-danger" asp-validation-for="Email"></span>
+                <input type="text" asp-for="UserId" value="@Model.UserId" hidden>
+            </div>
+            <button class="login-btn btn btn-success" type="submit">Редактировать</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

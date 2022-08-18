@@ -1,0 +1,38 @@
+@model IndexViewModel
+
+@{
+    ViewBag.Title = "Chat";
+    Layout = "_Layout";
+}
+
+@if (Model.Messages == null)
+{
+    <h2>Список сообщений пуст</h2>
+}
+else
+{
+    <div id="messages" class="messages-container">
+        @await Html.PartialAsync("PatrialViews/MessagePatrialView", Model.Messages)
+    </div>
+}
+
+<div class="form-container">
+    <form id="post-message-form" class="send-message" method="post">
+        <textarea id="message" class="message-area" type="text" placeholder="Введите ваше сообщение"></textarea>
+        <button type="submit" class="btn btn-danger">Отправить</button>
+    </form>
+</div>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script >
+            
+         
+    </script>
+}
+

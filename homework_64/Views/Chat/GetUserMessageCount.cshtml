@@ -1,0 +1,24 @@
+@model UserMessagesViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@if (Model != null)
+{
+    <div class="user-container">
+        <div class="user-information">
+            <img src="~/@Model.User.Avatar" alt="">
+            <p>Имя пользователя: @Model.User.UserName</p>
+            <p>Количество сообщений: @Model.Messages.Count()</p>
+        </div>
+    </div>
+}
+else
+{
+    <h2>Пользователь не найден</h2>
+}
+
+
+

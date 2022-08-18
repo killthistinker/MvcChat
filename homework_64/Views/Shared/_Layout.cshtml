@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - homework_64</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Raleway:wght@200;300;400;600;700;800&display=swap"
+            rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Chat" asp-action="Index">Чат</a>
+                    </li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account" asp-action="LogIn">Войти</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <form method="post" asp-controller="Account" asp-action="LogOff">
+                            <input type="submit" class="btn btn-warning" value="Выйти">
+                        </form>
+                        <a asp-action="Index" asp-controller="Profile" class="btn btn-info" type="button">
+                            @User.Identity.Name
+                        </a>
+                    }
+                    @if (User.Identity.Name == "admin@admin.com")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Profile" asp-action="GetAllUsers">Список пользователей</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script >
+
+     function toProfile(name){
+                      console.log(name)
+                      $("#go-to-user").load('@Url.Action("Index", "Profile")?userName='+name);
+                      }
+     
+f
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

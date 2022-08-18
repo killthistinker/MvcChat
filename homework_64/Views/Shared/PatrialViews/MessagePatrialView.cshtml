@@ -1,0 +1,44 @@
+@model IEnumerable<Message>
+
+@if (Model != null)
+{
+    int authorizedId = ViewBag.AuthorizedId;
+    @foreach (var message in Model)
+    {
+        @if (message.UserId != authorizedId)
+        {
+            <div class="message">
+                <div class="user">
+                    <img class="user-img" src="~/@message.User.Avatar" alt="image">
+                    <div class="user-info">
+                        <p class="date-create">@message.DateOfCreate</p>
+                        <a asp-action="GetUserMessageCount" asp-controller="Chat" asp-route-userId="@message.User.Id" class="user-name">@message.User.UserName</a>
+                    </div>
+                </div>
+                <p class="message-description">
+                    @message.Description
+                </p>
+            </div>
+        }
+        else
+        {
+            <div class="message-container">
+                <div class="message my-message">
+                    <div class="my-user">
+                        <img class="user-img" src="../../@message.User.Avatar" alt="image">
+                        <div class="user-info">
+                            <p class="date-create">@message.DateOfCreate</p>
+                            <a asp-action="GetUserMessageCount" asp-controller="Chat" asp-route-userId="@message.User.Id" class="my-user-name">@message.User.UserName</a>
+                        </div>
+                    </div>
+                    <p class="my-message-description">
+                        @message.Description
+                    </p>
+                </div>
+            </div>
+        }
+    }
+}
+
+
+                               

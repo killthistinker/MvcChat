@@ -1,0 +1,20 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "_Layout";
+}
+
+@if (Model != null)
+{
+    <div class="user-container">
+        <div class="user-information">
+            <img src="~/@Model.Avatar" alt="">
+            <p>Имя пользователя: @Model.UserName</p>
+            <p>Email: @Model.Email</p>
+            <p>Дата рождения: @Model.DateOfBirth</p>
+            <a asp-action="Edit" asp-controller="Profile" class="btn btn-danger" asp-route-userId="@Model.Id">Редактировать</a>
+        </div>
+       
+    </div>
+}
